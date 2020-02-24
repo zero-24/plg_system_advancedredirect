@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="plugin" group="system" method="upgrade">
+	<name>plg_system_advancedredirect</name>
+	<creationDate>28.05.2019</creationDate>
+	<author>Tobias Zulauf</author>
+	<copyright>(C) 2017 - 2019 Tobias Zulauf All rights reserved.</copyright>
+	<authorUrl>https://www.jah-tz.de</authorUrl>
+	<version>1.0.2</version>
+	<license>GNU/GPL Version 2 or later</license>
+	<description>PLG_SYSTEM_ADVANCEDREDIRECT_XML_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
+	<files>
+		<folder>language</folder>
+		<folder>subform</folder>
+		<filename plugin="advancedredirect">advancedredirect.php</filename>
+	</files>
+	<updateservers>
+		<server type="extension" name="AdvancedRedirect Update Site">https://raw.githubusercontent.com/zero-24/plg_system_advancedredirect/master/update.xml</server>
+	</updateservers>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="collect_urls"
+					type="radio"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_COLLECT_URLS_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_COLLECT_URLS_DESC"
+					default="0"
+					filter="integer"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="1">JENABLED</option>
+					<option value="0">JDISABLED</option>
+				</field>
+				<field
+					name="includeUrl"
+					type="radio"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_STORE_FULL_URL_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_STORE_FULL_URL_DESC"
+					default="1"
+					filter="integer"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="exclude_urls"
+					type="subform"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_EXCLUDE_URLS_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_EXCLUDE_URLS_DESC"
+					multiple="true"
+					formsource="plugins/system/advancedredirect/subform/excludes.xml"
+				/>
+			</fieldset>
+			<fieldset name="advancedRedirects">
+				<field
+					name="redirect_mode"
+					type="list"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_DESC"
+					default="auto"
+					validate="options"
+				>
+					<option value="auto">PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_AUTO</option>
+					<option value="url_hopping">PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_URL_HOPPING</option>
+					<option value="static">PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_STATIC</option>
+				</field>
+				<field
+					name="static_url"
+					type="text"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_STATIC_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_REDIRECT_MODE_STATIC_DESC"
+					default=""
+					showon="redirect_mode:static"
+				/>
+				<field
+					name="auto_redirects_create"
+					type="radio"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_AUTO_REDIRECTS_CREATE_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_AUTO_REDIRECTS_CREATE_DESC"
+					default="0"
+					filter="integer"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="1">JENABLED</option>
+					<option value="0">JDISABLED</option>
+				</field>
+				<field
+					name="auto_redirects_published"
+					type="radio"
+					label="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_AUTO_REDIRECTS_PUBLISHED_LABEL"
+					description="PLG_SYSTEM_ADVANCEDREDIRECT_FIELD_AUTO_REDIRECTS_PUBLISHED_DESC"
+					default="0"
+					showon="auto_redirects_create:1"
+					filter="integer"
+					class="btn-group btn-group-yesno"
+				>
+					<option value="1">JPUBLISHED</option>
+					<option value="0">JUNPUBLISHED</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
