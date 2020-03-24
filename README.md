@@ -11,3 +11,12 @@ There are two ways to support me right now:
 - You just want to send me an one-time donation? Great you can do this via [PayPal.me/zero24](https://www.paypal.me/zero24).
 
 Thanks for your support!
+
+## Release steps
+
+- `build/build.sh`
+- `git commit -am 'prepare release AdvancedRedirect 1.0.x'`
+- `git tag -s '1.0.x' -m 'AdvancedRedirect 1.0.x'`
+- `git push origin --tags`
+- create the release on GitHub
+- `git push origin master`
