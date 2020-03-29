@@ -18,9 +18,10 @@ Thanks for your support!
 
 - Download the latest version of the plugin: https://github.com/zero-24/plg_system_advancedredirect/releases/latest
 - Install the plugin using Upload & Install
-- Enable the plugin form the plugin manager
+- Disable the core `System - Redirect` plugin from the plugin manager
+- Enable the plugin from the plugin manager
 
-Now the inital setup is completed and you can start configure the plugin.
+Now the initial setup is completed and you can start configure the plugin.
 
 ### AdvancedRedirect Options
 
@@ -58,7 +59,7 @@ You have found an Issue, you have done a translation or have a question / sugges
 
 ## Joomla! Extensions Directory (JED)
 
-This plugin can also been found in the Joomla! Extensions Directory: [AdvancedRedirect by zero24](https://extensions.joomla.org/)
+This plugin can also been found in the Joomla! Extensions Directory: [AdvancedRedirect by zero24](https://extensions.joomla.org/extension/site-management/url-redirection/advancedredirect/)
 
 ## Release steps
 
