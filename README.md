@@ -52,10 +52,14 @@ With this option you can decide whether the suggested redirect is published or n
 Please note that my update server only supports the latest version running the latest version of Joomla and atleast PHP 7.0.
 Any other plugin version I may have added to the download section don't get updates using the update server.
 
-## Issues / Translations
+## Issues / Pull Requests
 
-You have found an Issue, you have done a translation or have a question / suggestion regarding the plugin?
+You have found an Issue, have a question or you would like to suggest changes regarding this extension?
 [Open an issue in this repo](https://github.com/zero-24/plg_system_advancedredirect/issues/new) or submit a pull request with the proposed changes.
+
+## Translations
+
+You want to translate this extension to your own language? Check out my [Crowdin Page for my Extensions](https://joomla.crowdin.com/zero-24) for more details. Feel free to [open an issue here](https://github.com/zero-24/plg_system_advancedredirect/issues/new) on any question that comes up.
 
 ## Joomla! Extensions Directory (JED)
 
@@ -69,3 +73,13 @@ This plugin can also been found in the Joomla! Extensions Directory: [AdvancedRe
 - `git push origin --tags`
 - create the release on GitHub
 - `git push origin master`
+
+## Crowdin
+
+### Upload new strings
+
+`crowdin upload sources`
+
+### Download translations
+
+`crowdin download --skip-untranslated-files --ignore-match`
