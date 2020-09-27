@@ -16,10 +16,10 @@ Thanks for your support!
 
 ### Initial setup the plugin
 
-- Download the latest version of the plugin: https://github.com/zero-24/plg_system_advancedredirect/releases/latest
-- Install the plugin using Upload & Install
+- [Download the latest version of the plugin](https://github.com/zero-24/plg_system_advancedredirect/releases/latest)
+- Install the plugin using `Upload & Install`
 - Disable the core `System - Redirect` plugin from the plugin manager
-- Enable the plugin from the plugin manager
+- Enable this plugin `System - AdvancedRedirect` from the plugin manager
 
 Now the initial setup is completed and you can start configure the plugin.
 
