@@ -59,11 +59,32 @@ class PlgSystemAdvancedRedirect extends JPlugin
 	{
 		parent::__construct($subject, $config);
 
+		// Starting with J4 we do not need the following two lines anymore
+		if (version_compare(JVERSION, '4.0.0', 'ge'))
+		{
+			return;
+		}
+
 		// Set the JError handler for E_ERROR to be the class' handleError method.
 		JError::setErrorHandling(E_ERROR, 'callback', array('PlgSystemAdvancedRedirect', 'handleError'));
 
 		// Register the previously defined exception handler so we can forward errors to it
 		self::$previousExceptionHandler = set_exception_handler(array('PlgSystemAdvancedRedirect', 'handleException'));
+
+	}
+
+	/**
+	 * Internal processor for all error handlers
+	 *
+	 * @param   $error  The event object
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0.5
+	 */
+	public function onError($error)
+	{
+		self::doErrorHandling($error);
 	}
 
 	/**
@@ -134,7 +155,7 @@ class PlgSystemAdvancedRedirect extends JPlugin
 		// Get the Plugin Params
 		$params = new Registry(JPluginHelper::getPlugin('system', 'advancedredirect')->params);
 
-		// Prepare the current URI 
+		// Prepare the current URI
 		$uri = Uri::getInstance();
 
 		// These are the original URLs
@@ -324,13 +345,22 @@ class PlgSystemAdvancedRedirect extends JPlugin
 			elseif ($params->get('redirect_mode', 'auto') === 'url_hopping')
 			{
 				// Just remove the latest part of the URL
-				$newDestination = str_replace(array_pop(explode('/', $url)), '', $url);
+				$explode = explode('/', $url);
+				$newDestination = str_replace(array_pop($explode), '', $url);
 			}
 			else
 			{
 				$uriObject       = Uri::getInstance($url);
 				$routerObject    = CMSApplication::getInstance('site')->getRouter('site');
-				$parsedUriObject = $routerObject->parse($uriObject);
+
+				try
+				{
+					$parsedUriObject = $routerObject->parse($uriObject);
+				}
+				catch (Exception $e)
+				{
+					$parsedUriObject = false;
+				}
 
 				// Check wether we can get the catid or an article id
 				$categoryId = isset($parsedUriObject['catid']) ? (integer) $parsedUriObject['catid'] : false;
@@ -397,14 +427,15 @@ class PlgSystemAdvancedRedirect extends JPlugin
 				}
 
 				$data = (object) array(
-					'id'           => $redirectId,
-					'old_url'      => $url,
-					'new_url'      => $newDestination,
-					'referer'      => $app->input->server->getString('HTTP_REFERER', ''),
-					'hits'         => 1,
-					'published'    => $published,
-					'created_date' => Factory::getDate()->toSql()
-				);	
+					'id'            => $redirectId,
+					'old_url'       => $url,
+					'new_url'       => $newDestination,
+					'referer'       => $app->input->server->getString('HTTP_REFERER', ''),
+					'hits'          => 1,
+					'published'     => $published,
+					'modified_date' => Factory::getDate()->toSql(),
+					'created_date'  => Factory::getDate()->toSql()
+				);
 
 				try
 				{
