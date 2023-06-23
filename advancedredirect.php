@@ -300,6 +300,18 @@ class PlgSystemAdvancedRedirect extends JPlugin
 				// In case the url contains double // lets remove it
 				$destination = str_replace(Uri::root() . '/', Uri::root(), $dest);
 
+				// Always count redirect hits
+				$redirect->hits++;
+
+				try
+				{
+					$db->updateObject('#__redirect_links', $redirect, 'id');
+				}
+				catch (Exception $e)
+				{
+					// We don't log issues for now
+				}
+
 				$app->redirect($destination, (int) $redirect->header);
 			}
 
@@ -450,7 +462,7 @@ class PlgSystemAdvancedRedirect extends JPlugin
 				}
 				catch (Exception $e)
 				{
-					ExceptionHandler::render(new Exception(Text::_('PLG_SYSTEM_ADVANCEDREDIRECT_ERROR_DATABASE'), 500, $e));
+					// We don't log issues for now
 				}
 			}
 
@@ -470,7 +482,7 @@ class PlgSystemAdvancedRedirect extends JPlugin
 			}
 			catch (Exception $e)
 			{
-				ExceptionHandler::render(new Exception(Text::_('PLG_SYSTEM_ADVANCEDREDIRECT_ERROR_DATABASE'), 500, $e));
+				// We don't log issues for now
 			}
 		}
 
