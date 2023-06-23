@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.9" type="plugin" group="system" method="upgrade">
 	<name>plg_system_advancedredirect</name>
-	<creationDate>2021-07-10</creationDate>
+	<creationDate>2023-06-23</creationDate>
 	<author>Tobias Zulauf</author>
-	<copyright>(C) 2017 - 2019 Tobias Zulauf All rights reserved.</copyright>
+	<copyright>(C) 2017 - 2023 Tobias Zulauf All rights reserved.</copyright>
 	<authorUrl>https://www.jah-tz.de</authorUrl>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_SYSTEM_ADVANCEDREDIRECT_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
